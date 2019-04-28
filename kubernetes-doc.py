@@ -18,8 +18,9 @@ def generate_directory_pdf(url, name, s=None):
         if div:
             try:
                 if name in ["Setup", "Tutorials", "Reference"]:  # will give duplicate id error, go through pages one by one to skip error page
-                    print("testing " + l1, end='')
+                    print("testing " + l1)
                     output = pypandoc.convert_text(div.html, "pdf", format="html", outputfile="/tmp/kubernetes_pdf_doc_tmp.pdf".format(name), extra_args=['--pdf-engine=xelatex'])
+                    output = pypandoc.convert_text(div.html, "epub3", format="html", outputfile="/tmp/kubernetes_epub_doc_tmp.epub".format(name), extra_args=['--epub-cover-image=kubernetes-logo.png'])
                     print(" works")
             except Exception as e:
                 print(" failed!")
@@ -29,9 +30,10 @@ def generate_directory_pdf(url, name, s=None):
         with open("/tmp/{}.html".format(name), "wt") as f:
             f.write(html)
 
-    print("generating pdf...")
+    print("generating pdf and epub...")
     try:
         output = pypandoc.convert_text(html, "pdf", format="html", outputfile="./{}.pdf".format(name), extra_args=['--pdf-engine=xelatex', '--css=codeblock_wrap.css'])
+        output = pypandoc.convert_text(html, "epub3", format="html", outputfile="./{}.epub".format(name), extra_args=['--epub-cover-image=kubernetes-logo.png', '--css=codeblock_wrap.css'])
     except Exception as e:
         print(e)
 
