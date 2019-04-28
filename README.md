@@ -1,6 +1,6 @@
 # Kubernetes PDF Documentation
 
-### This repository contains all the [Kubernetes documentation](https://kubernetes.io/docs/home/) in PDF format, generated automatically.
+### This repository contains all the [Kubernetes documentation](https://kubernetes.io/docs/home/) in PDF and Epubv3 format, generated automatically.
 
 ## How the files are structured?
 PDF files are grouped in sections:
